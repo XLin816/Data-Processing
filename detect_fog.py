@@ -17,28 +17,28 @@ def slow_horizontal_variance(im):
         vars.append(variance)
     return sum(vars)/height
 
-# def run():
-#     pathDir = os.listdir(data_path)
-#     for i in pathDir:
-#         foggy_name = os.path.join(data_path, i)
-#         # print(foggy_name)
-#         for fn in glob.glob(foggy_name):
-#             im = Image.open(fn).convert('L')
-#             var = slow_horizontal_variance(im)
-#             # fog = var < 1000    # FOG THRESHOLD
-#             fog = var
-#             if fog < 712:
-#                 print('%5.0f - %5s - %s' % (var, fog and 'FOGGY' or 'SHARP', fn))
-#                 shutil.move(foggy_name, move_path + '/' + i)
-#
-# if __name__ == '__main__':
-#     run()
-time_start = time.time()
-for fn in glob.glob(r'000041.jpg'):
-    im = Image.open(fn).convert('L')
-    var = slow_horizontal_variance(im)
-    fog = var < 1000    # FOG THRESHOLD
-    time_end = time.time()
-    time_sum = time_end - time_start
-    print(time_sum)
-    print('%5.0f - %5s - %s' % (var, fog and 'FOGGY' or 'SHARP', fn))
+def run():
+    pathDir = os.listdir(data_path)
+    for i in pathDir:
+        foggy_name = os.path.join(data_path, i)
+        # print(foggy_name)
+        for fn in glob.glob(foggy_name):
+            im = Image.open(fn).convert('L')
+            var = slow_horizontal_variance(im)
+            # fog = var < 1000    # FOG THRESHOLD
+            fog = var
+            if fog < 712:
+                print('%5.0f - %5s - %s' % (var, fog and 'FOGGY' or 'SHARP', fn))
+                shutil.move(foggy_name, move_path + '/' + i)
+
+if __name__ == '__main__':
+    run()
+# time_start = time.time()
+# for fn in glob.glob(r'000041.jpg'):
+#     im = Image.open(fn).convert('L')
+#     var = slow_horizontal_variance(im)
+#     fog = var < 1000    # FOG THRESHOLD
+#     time_end = time.time()
+#     time_sum = time_end - time_start
+#     print(time_sum)
+#     print('%5.0f - %5s - %s' % (var, fog and 'FOGGY' or 'SHARP', fn))
